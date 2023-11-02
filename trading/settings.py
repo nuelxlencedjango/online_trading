@@ -22,7 +22,6 @@ import cloudinary
 import cloudinary.uploader
 import cloudinary.api
 
-# Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
@@ -33,6 +32,8 @@ DEBUG = True
 
 # Application definition
 ALLOWED_HOSTS = ['127.0.0.1','web-production-2522.up.railway.app','https://web-production-2522.up.railway.app']
+
+
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
