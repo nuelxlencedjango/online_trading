@@ -31,11 +31,9 @@ SECRET_KEY = 'django-insecure-_4(c)qiw#+jn$(xol5z43om_eaapu+mq!3o_cnafd^px7au1u2
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
-
 
 # Application definition
-
+ALLOWED_HOSTS = ['127.0.0.1','web-production-2522.up.railway.app','https://web-production-2522.up.railway.app']
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -157,3 +155,7 @@ cloudinary.config(
   api_secret=os.environ.get('API_SECRET'), 
   secure = True
 )
+
+
+
+CSRF_TRUSTED_ORIGINS=['https://web-production-2522.up.railway.app']
