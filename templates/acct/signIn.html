@@ -1,0 +1,88 @@
+{% extends 'navs/base.html' %}
+
+{% block content %}
+
+{% load widget_tweaks %}
+{%load static%}
+
+<!--  registration -->
+<div class="register">
+    <div class="container">
+        <div class="col-md-12">
+            <h3 class="reg-form">Login form</h3>
+             <h1 style="color: red;">Trader Number:</h1>
+           
+        </div>
+    </div>
+</div>
+
+
+
+
+
+<!--Error meassage -->
+<div class="alert alert-danger">
+
+{% if messages %}
+{% for meg in messages %}
+<h3 style="color: #000;">{{msg}}</h3>
+ {% endfor %}  
+{% endif %}  
+</div>
+
+
+
+
+
+<div class="container">
+
+     <!-- Errors coming from the form-->
+    <div class="content-wrapper">
+        {% if form.errors %}
+  <div class="alert alert-danger">
+      <strong> {{ form.errors }}</strong>
+  
+
+      {% elif form.errors %}
+      <strong> {{ form.errors }}</strong>
+      <strong> {{ form.errors }}</strong>
+    </div>
+         {% endif %}
+
+         <!--end error form-->
+
+    
+         <!--form itself-->
+<form enctype="multipart/form-data" class="container" method="post" action="{% url 'account:trader_login' %}" id="product_form">
+    {% csrf_token %}
+    
+
+       <div class="row">
+       
+        <div class="form-group mb-4  col-md-6">
+           <label class="form-label">Username</label>
+            {% render_field form.username|attr:'required:true' class="form-control" %}
+            
+        </div>
+       
+        <div class="form-group mb-4  col-md-6">
+            <label class="form-label">Password</label>
+            {% render_field form.password|attr:'required:true' class="form-control" %}
+            
+        </div>
+       
+      
+       </div>
+       <button class="btn btn-danger" type="submit">submit</button>
+      
+</form>
+    </div>
+</div>
+
+
+
+
+{% include 'navs/footer.html' %}
+{% endblock %}
+
+

@@ -1,0 +1,120 @@
+{% extends 'navs/base.html' %}
+
+{% block content %}
+{% load mathfilters %}
+{% load widget_tweaks %}
+{%load static%}
+
+<!--  registration -->
+<div class="register">
+    <div class="container">
+        <div class="col-md-12">
+            <h3 class="reg-form">registration form</h3>
+            <h1>Only 10 Traders can register here!</h1>
+            
+            {% if ex %}
+            <h3 class="ex"> Registration Is Closed. Sorry you cant register at this moment.Contact the admin</h3>
+            {% else %}
+             <h1 style="color: red;">Your number is: {{cnt|add:1}} </h1>
+           
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+<!--Error meassage -->
+<div class="alert alert-danger">
+
+{% if messages %}
+{% for meg in messages %}
+<h3 style="color: #000;">{{msg}}</h3>
+ {% endfor %}  
+{% endif %}  
+</div>
+
+
+
+
+
+
+<div class="container">
+
+     <!-- Errors coming from the form-->
+    <div class="content-wrapper">
+        {% if form1.errors %}
+  <div class="alert alert-danger">
+      <strong> {{ form1.errors }}</strong>
+     
+
+      {% elif form2.errors %}
+      <strong> {{ form2.errors }}</strong>
+    </div>
+         {% endif %}
+
+         <!--end error form-->
+
+    
+         <!--form itself-->
+<form enctype="multipart/form-data" class="container" method="post" action="{% url 'account:signup' %}" id="product_form">
+    {% csrf_token %}
+    
+
+       <div class="row">
+       
+        <div class="form-group mb-4  col-md-6">
+           <label class="form-label">Username</label>
+            {% render_field form1.username|attr:'required:true' class="form-control" %}
+            
+        </div>
+        <div class="form-group mb-4  col-md-6">
+            <label class="form-label">First Name</label>
+            {% render_field form1.first_name|attr:'required:true' class="form-control" %}
+            
+        </div>
+        <div class="form-group mb-4  col-md-6">
+            <label class="form-label">Last Name</label>
+            {% render_field form1.last_name|attr:'required:true' class="form-control" %}
+            
+        </div>
+        
+        <div class="form-group mb-4  col-md-6">
+            <label class="form-label">Email</label>
+            {% render_field form1.email|attr:'required:true' class="form-control" %}
+            
+        </div>
+       
+        <div class="form-group mb-4  col-md-6">
+            <label class="form-label">Phone Number</label>
+            {% render_field form2.phone|attr:'required:true' class="form-control" %}
+            
+        </div>
+
+        <div class="form-group mb-4  col-md-6">
+            <label class="form-label">Password</label>
+            {% render_field form1.password1|attr:'required:true' class="form-control" %}
+            
+        </div>
+        <div class="form-group mb-4  col-md-6">
+            <label class="form-label">Repeat Password</label>
+            {% render_field form1.password2|attr:'required:true' class="form-control" %}
+            
+        </div>
+       
+      
+       </div>
+       <button class="btn btn-danger" type="submit">submit</button>
+      
+</form>
+    </div>
+</div>
+
+
+{% endif %}
+
+
+{% include 'navs/footer.html' %}
+{% endblock %}

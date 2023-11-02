@@ -1,0 +1,49 @@
+
+
+{% extends 'navs/base.html' %}
+
+{% block content %} 
+
+
+{% load static %}
+
+<style>
+    .container{
+        margin-top: 100px;
+    }
+    footer{
+        margin-top: 100px;
+    }
+  .img-body img{
+    width: 100%;
+    padding: 5px;
+    height: 600px;
+  }  
+</style>
+
+<h3>{{request.user}}</h3>
+<div class="container">
+  <div class="row">
+    <div class="img-body">
+      <img src="/static/images/marten-bjork-6dW3xyQvcYE-unsplash.jpg" alt="">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{% include 'navs/footer.html' %}
+
+{% endblock %}

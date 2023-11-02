@@ -1,0 +1,91 @@
+{% extends 'navs/base.html' %}
+
+{% block content %}
+
+{% load widget_tweaks %}
+{%load static%}
+
+
+<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+
+<!--  registration -->
+<div class="register">
+    <div class="container">
+        <div class="col-md-12">
+            <h3 class="reg-form">Admin Dashboard</h3>
+            {% for name in traderData %}
+             <h1>Trader Number: <span>{{name.user.first_name}} {{name.user.last_name}}</span></h1>
+    
+             {% endfor %}
+           
+        </div>
+    </div>
+</div> 
+
+
+<style>
+    .usr{
+        text-transform: capitalize;
+        font-family: 'Times New Roman', Times, serif;
+    }
+</style>
+
+{% if messages %}
+{% for mess in messahes %}
+<h3>{{mess}}</h3>
+{% endfor %}
+{% endif %}
+
+<h1 class="trading">Traders information . Scroll down to see the graph</h1>
+<div class="container">
+
+<table id="customers">
+    <tr>
+      <th>First Name</th>
+      <th>Last Name </th>
+      <th>Traders Id</th>
+      <th>Email</th>
+      <th>Date Joined</th>
+      <th>Phone</th>
+     
+      <th>Intial Amount</th>
+      <th>Current Balance</th>
+      <th>view</th>
+      <th>Action</th>
+    </tr>
+
+       
+    {% for dt in tradersData %}
+    <tr>
+       <td class="usr">{{dt.user.first_name }}</td>
+        <td>{{dt.user}}</td>
+        <td>{{dt.trader_id}}</td>
+        <td>{{dt.user.email }}</td>
+        <td>{{dt.date_registered }}</td>
+        <td>{{dt.phone}}</td>
+     
+       <td>{{dt.initial_balance}}</td>
+      <td>{{dt.current_balance}}</td>
+      <td><a href="{% url 'manager:user_data' dt.pk %}" class="btn btn-success">View</a></td>
+      <td><a href="{% url 'account:delete_user' dt.pk %}" class="btn btn-danger">Delete</a></td>
+    </tr>
+    {% endfor %}
+  
+    
+  </table>
+</div>
+
+
+
+<h1 class="td">Trading Data Graph</h1>
+<div>{{ graph_html|safe }}</div>
+
+
+
+
+<h1 class="td">Trading Data Graph</h1>
+<div>{{ graph_html2|safe }}</div>
+
+
+{% include 'navs/footer.html' %}
+{% endblock %}

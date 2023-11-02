@@ -1,0 +1,86 @@
+{% extends 'navs/base.html' %}
+
+{% block content %}
+
+{% load widget_tweaks %}
+{%load static%}
+
+
+<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+
+<!--  registration -->
+<div class="register">
+    <div class="container">
+        <div class="col-md-12">
+            <h3 class="reg-form">Dashboard</h3>
+            {% for name in traderData %}
+             <h1>Trader Name: <span>{{name.user.first_name}} {{name.user.last_name}}</span></h1>
+             <h4>Trader Id: {{name.trader_id}}</h4>
+             <p>Date Registered: {{name.date_registered}}</p>
+             <h3>Cuurent Balance: ${{name.current_balance}}</h3>
+             {% endfor %}
+           
+        </div>
+    </div>
+</div> 
+
+
+
+{% if not graph_html %}
+   <div class="container">
+    <h2>You dont have any transaction History yet. <SPan>Please click on the button above</SPan></h2>
+   </div>
+
+{% else %}
+<h1 class="trading">Transactions History </h1>
+<div class="container">
+
+<table id="customers">
+    <tr>
+        
+      <th>Initial Amount</th>
+      <th>Profit / Loss </th>
+      <th>Cuurent Balance</th>
+      <th>Reference No</th>
+      <th>Date Of Transaction</th>
+      
+    </tr>
+    <tr>
+      <td>100</td>
+      <td>0.00</td>
+      <td>100</td>
+      <td>NILL</td>
+      <td>0</td>
+    
+    </tr>
+    {% for dt in data %}
+    <tr>
+      <td>{{dt.current_balance}}</td>
+      <td>{{dt.profit_loss}}</td>
+      <td>{{dt.current_balance}}</td>
+      <td>{{dt.referenceNo}}</td>
+      <td>{{dt.date_of_transaction}}</td>
+    
+    </tr>
+    {% endfor %}
+  
+    
+  </table>
+</div>
+
+
+
+ <div class="container">
+    <h1 class="td">Trading Data Graph</h1>
+ </div>
+<div>{{ graph_html|safe }}</div>
+
+
+
+
+<h1 class="td">Trading Data Graph</h1>
+<div>{{ graph_html2|safe }}</div>
+{% endif %}
+
+{% include 'navs/footer.html' %}
+{% endblock %}
