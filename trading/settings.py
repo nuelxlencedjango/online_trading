@@ -31,7 +31,6 @@ SECRET_KEY = 'django-insecure-_4(c)qiw#+jn$(xol5z43om_eaapu+mq!3o_cnafd^px7au1u2
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-
 # Application definition
 ALLOWED_HOSTS = ['127.0.0.1','web-production-2522.up.railway.app','https://web-production-2522.up.railway.app']
 INSTALLED_APPS = [
@@ -46,11 +45,12 @@ INSTALLED_APPS = [
     # installed apps
     'account',
     'manager',
+    'business',
     
     #3rd party library
      'cloudinary',
      'widget_tweaks',
-     'business',
+    
     'mathfilters',
 ]
 
